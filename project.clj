@@ -1,4 +1,4 @@
-(defproject reader-clojure-web-app "0.1.0-SNAPSHOT"
+(defproject reader-web-app "0.1.0-SNAPSHOT"
   :description "offline fb2 reader app"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -15,7 +15,10 @@
                  [ring/ring-defaults "0.1.5"]
                  [cljs-ajax "0.5.2"]
                  [com.novemberain/monger "3.0.0-rc2"]
-                 [ring/ring-mock "0.3.0"]]
+                 [ring/ring-mock "0.3.0"]
+                 [korma "0.4.0"]
+                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
+                 [ragtime "0.5.2"]]
   :plugins [[lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-1"]]
