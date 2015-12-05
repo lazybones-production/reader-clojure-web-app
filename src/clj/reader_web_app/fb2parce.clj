@@ -1,5 +1,7 @@
 (ns reader-web-app.fb2parce
   (:require [clojure.xml :as xml])
+  (:import [javax.xml.bind.DatatypeConverter])
+  (:import [java.io.FileOutputStream])
   (:gen-class))
 
 ; (defn is-en?
@@ -19,7 +21,7 @@
 (defn get-meta-info
   [raw-meta-info, k]
   (println "\n" raw-meta-info)
-  (if (string? raw-meta-info)
+  (if (or (string? raw-meta-info) (nil? raw-meta-info))
     nil
     (if (map? raw-meta-info)
       (if (= (xml/tag raw-meta-info) k)
@@ -38,12 +40,46 @@
                 new-node (get-meta-info cnode k)]
              (recur nodess (into meta-info new-node)))))))))
 
+(defn get-node
+  [raw-book, k]
+  (println k)
+  (loop [nodes raw-book]
+    (if (empty? nodes)
+      nil
+      (let [[cnode & nodess] nodes]
+        (if (= (clojure.xml/tag cnode) k)
+          cnode
+          (recur nodess))))))
+
+(defn get-in-node
+  [nodes, ks]
+  )
+
+(defn save-cover
+  [raw-binary-jpg, cover-path]
+  (if (nil? raw-binary-jpg)
+    nil
+    (let [binary-jpg (first (clojure.xml/content raw-binary-jpg))
+        full-cover (str cover-path (.toString (char-array 29)) ".jpeg")
+         fos (java.io.FileOutputStream. full-cover)]
+      (try
+       (.write fos (javax.xml.bind.DatatypeConverter/parseBase64Binary binary-jpg))
+       (catch clojure.lang.ExceptionInfo e (println (str "SaveFileError: " e)))
+       (finally (.close fos)))))
+  )
+
 (defn parse-book
   [book-path]
   (let [raw-book (xml/parse book-path)
         raw-book-content (xml/content raw-book)
-        raw-meta-info (first raw-book-content)]
-    (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))))
+        raw-meta-info (get-node raw-book-content :description)
+        raw-body (get-node raw-book-content :body)
+        raw-binary-jpg (get-node raw-book-content :binary)]
+    (println raw-binary-jpg)
+    ; (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))
+    ; (println (first raw-book))
+    ; (String. (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (clojure.xml/content raw-binary-jpg))))
+    (save-cover raw-binary-jpg "resources/public/book-covers/")))
 
 (defn -main
   [some]
