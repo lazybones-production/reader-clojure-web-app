@@ -5,9 +5,22 @@
             [ring.middleware.json :as middleware]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
+(defn get-books [_]
+    {:status 200
+     :body {:data "[]"}})
+
+(defn create-book [_]
+    {:status 201})
+
+(defn delete-book [_]
+    {:status 200
+     :body {:data "{}"}})
+
 (defroutes app-routes
-  (GET "/books" [] {:body {:my-map "hello"}})
-  (GET "/books2" [] {:body {:my-map "hello2"}})
+  (context "/books" []
+    (GET "/" [] get-books)
+    (POST "/" [] create-book)
+    (DELETE "/:id" [] delete-book))
   (route/not-found {:body {:error "Not such route"}}))
 
 (def app
