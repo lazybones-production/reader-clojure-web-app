@@ -3,7 +3,7 @@
             [ragtime.repl :as repl]))
 
 (defn load-config []
-  {:datastore   (jdbc/sql-database {:connection-uri "jdbc:postgresql://localhost:5432/shelf?user=shelf&password=shelf"})
+  {:datastore   (jdbc/sql-database {:connection-uri "jdbc:postgresql://localhost:5432/shelf?user=postgres"})
    :migrations (jdbc/load-resources "migrations")})
 
 (defn migrate []
