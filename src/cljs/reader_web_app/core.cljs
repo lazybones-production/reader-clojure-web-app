@@ -24,8 +24,7 @@
           (dom/div #js {:className "content-container"}
             (dom/a #js {:href "/"} "Home")
             (dom/a #js {:href "/books"} "Books")
-            (om/build ((:route data) routes/routes) [])
-            (dom/span nil (:counter data))))))
+            (om/build ((:route data) routes/routes) []))))))
   state/app-state
   {:target (. js/document (getElementById "app"))})
 

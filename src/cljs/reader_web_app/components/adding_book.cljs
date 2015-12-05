@@ -1,32 +1,16 @@
 (ns reader-web-app.components.adding-book
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [ajax.core :refer [POST]]))
+            [reader-web-app.actions.common :as actions]))
 
 (defn dragHandler [owner isOver e]
-  (do
-    (.stopPropagation e)
-    (.preventDefault e)
-    (om/update-state! owner (fn [state] (assoc state :isOver isOver)))))
-
-(defn handle-response-ok [resp]
-  ())
-
-(defn set-upload-indicator []
-  ())
-
-(defn handle-response-error [ctx]
-  ())
+  (.stopPropagation e)
+  (.preventDefault e)
+  (om/update-state! owner (fn [state] (assoc state :isOver isOver))))
 
 (defn processResult [e]
-  (let [result (.-result (.-target e))]
-        (POST "/upload" {:params {:message result}
-                         :handler handle-response-ok
-                         :error-handler handle-response-error
-                         :format :json
-                         :response-format :json
-                         :request-format :json
-                         :keywords? true})))
+  (let [book (.-result (.-target e))]
+    (actions/upload-book book)))
 
 (defn readFile [file]
   (let [reader (js/FileReader.)]
@@ -40,8 +24,7 @@
   (om/update-state! owner (fn [state] (assoc state :isOver false)))
   (let [files (.-files (.-dataTransfer e))
         file (aget files 0)]
-    (readFile file)
-    (set-upload-indicator)))
+    (readFile file)))
 
 (defn adding-book [data owner]
   (reify
