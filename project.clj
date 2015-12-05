@@ -7,6 +7,7 @@
   :source-paths ["src/clj"]
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.58" :exclusions [org.apache.ant/ant]]
+                 [secretary "1.2.3"]
                  [org.omcljs/om "0.9.0"]
                  [compojure "1.4.0"]
                  [ring/ring-core "1.3.2"]
