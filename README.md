@@ -1,5 +1,7 @@
 # reader-clojure-web-app
 
+[![Build Status](https://travis-ci.org/tadjik1/reader-clojure-web-app.svg?branch=master)](https://travis-ci.org/tadjik1/reader-clojure-web-app)
+
 FB2 offline reader web app in clojure
 
 ## Installation
