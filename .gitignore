@@ -2,6 +2,8 @@ node_modules
 /target
 /classes
 /checkouts
+/resources/out/*
+/resources/public/js/*
 pom.xml
 pom.xml.asc
 *.jar
@@ -10,3 +12,5 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
+.DS_Store
+figwheel_server.log

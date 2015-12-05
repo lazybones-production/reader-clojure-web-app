@@ -1,36 +1,42 @@
 # reader-clojure-web-app
 
-FIXME: description
+FB2 offline reader web app in clojure
 
 ## Installation
 
-Download from http://example.com/FIXME.
+For front-end you need node.js ^4.0.0.
+```
+npm i && gulp styles
+```
+It will watch all *.styl* files in the future.
+Autoprefixer adds prefixes to two last major browsers.
+
+For clojurescript frontent code use
+```
+lein figwheel dev
+```
+It will spin up a server with static in localhost :3449 with hot code reload.
+REPL will connect automatically after you will open link in browser
+Next, you can do something like:
+```
+(in-ns 'read-web-app.core)
+```
+And then swap state, if you want.
+
+For serverside run
+```
+lein ring server-headless
+```
+
+It will spin up backend server at :3000 with hot code reload.
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar reader-clojure-web-app-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+Not yet.
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 MIT
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
