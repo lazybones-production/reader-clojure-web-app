@@ -28,6 +28,13 @@ For serverside run
 lein ring server-headless
 ```
 
+## Migrations
+```
+$ lein rollback
+
+$ lein migrate
+```
+
 It will spin up backend server at :3000 with hot code reload.
 
 ## Usage
