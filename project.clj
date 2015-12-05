@@ -22,6 +22,8 @@
   :plugins [[lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-1"]]
+  :aliases {"migrate"  ["run" "-m" "reader-web-app.migrations/migrate"]
+            "rollback" ["run" "-m" "reader-web-app.migrations/rollback"]}
   :cljsbuild {
     :builds
     [{
