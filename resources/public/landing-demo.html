@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reader Web App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+  <div class="heading">
+     <div class="logo">
+       <i class="fa fa-book"></i>
+       <span>Shelf.</span>
+     </div>
+  </div>
+  <div class="book-cards-grid-container">
+  <div class="book-cards-grid">
+    <div class="book-card">
+      <div class="book-card-cover-container">
+        <img class="book-card-cover" src="http://payload.cargocollective.com/1/4/128429/2040423/45cd8ec84e303febca9f661e1f7f0264.jpg" alt="">
+        <i class="fa fa-heart-o"></i>
+      </div>
+      <div class="book-card-progress-container">
+        <div class="book-card-progress"></div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-card-cover-container">
+        <img class="book-card-cover" src="http://www.beautifulbookcovers.com/wp-content/uploads/2013/02/the-teleportation-accident-cover-art.jpeg" alt="">
+        <i class="fa fa-heart-o"></i>
+      </div>
+      <div class="book-card-progress-container">
+        <div class="book-card-progress"></div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-card-cover-container">
+        <img class="book-card-cover" src="http://payload.cargocollective.com/1/4/128429/2040423/1514b97166c89810fb7d72123df7a683.jpg" alt="">
+        <i class="fa fa-heart-o"></i>
+      </div>
+      <div class="book-card-progress-container">
+        <div class="book-card-progress"></div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-card-cover-container">
+        <img class="book-card-cover" src="http://cdn.pastemagazine.com/www/system/images/photo_albums/hobbit-book-covers/large/photo_5653_0-6.jpg" alt="">
+        <i class="fa fa-heart-o"></i>
+      </div>
+      <div class="book-card-progress-container">
+        <div class="book-card-progress"></div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-card-cover-container">
+        <img class="book-card-cover" src="http://payload.cargocollective.com/1/2/88505/1201278/01%20Book%20cover-%20Poland.JPG" alt="">
+        <i class="fa fa-heart-o"></i>
+      </div>
+      <div class="book-card-progress-container">
+        <div class="book-card-progress"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="welcome">
+    <div class="overlay-dropzone"></div>
+    <div class="welcome-text-container">
+      <p class="welcome-app-description"><span class="logo">Shelf</span> is the best place to just pick up a book, start reading and continue on any device even you are offline.</p>
+      <p class="welcome-dropzone-description">Drop your book anywhere on this page to start reading.</p>
+      <i class="fa fa-plus-square-o drop-icon"></i>
+      <p class="welcome-show-library">Or <a class="sl-link-btn"><i class="fa fa-search"></i> search library</a> collected by other readers.</p>
+    </div>
+  </div>
+  <!-- <input class="overlay-toggle" type="checkbox" checked> -->
+</div>
+    <script>
+      document.querySelector('.sl-link-btn').addEventListener('click', event =>
+	      document.querySelector('.welcome').style.display = 'none');
+    </script>
+  </body>
+</html>
