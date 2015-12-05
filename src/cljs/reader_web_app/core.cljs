@@ -1,18 +1,13 @@
 (ns reader-web-app.core
   (:require [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]))
+            [om.dom :as dom :include-macros true]
+            [reader-web-app.routes :as routes]
+            [reader-web-app.router :as router]
+            [reader-web-app.state :as state]))
 
 (enable-console-print!)
 
 (println "Edits to this text should show up in your developer console.")
-
-;; define your app data so that it doesn't get over-written on reload
-
-(defonce app-state (atom {
-  :text "Hello CLJS Application"
-  :counter 0
-  :contacts []
-  }))
 
 ;; increment counter in state
 (defn incrementCounter [data]
@@ -24,10 +19,11 @@
     (reify om/IRender
       (render [_]
         (dom/div #js {:className "container"}
-          (dom/h1 nil (:text data))
-          (dom/button #js {:className "button" :onClick #(incrementCounter data)} "Click me!")
+          (dom/a #js {:href "/"} "Home")
+          (dom/a #js {:href "/books"} "Books")
+          (om/build ((:route data) routes/routes) [])
           (dom/span nil (:counter data))))))
-  app-state
+  state/app-state
   {:target (. js/document (getElementById "app"))})
 
 
