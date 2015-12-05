@@ -1,0 +1,32 @@
+{
+  "name": "reader-clojure-web-app",
+  "version": "1.0.0",
+  "description": "offline fb2 reader in the web",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bloomca/reader-clojure-web-app.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bloomca/reader-clojure-web-app/issues"
+  },
+  "homepage": "https://github.com/Bloomca/reader-clojure-web-app#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.1.2",
+    "glob": "^6.0.1",
+    "gulp": "^3.9.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.1.1",
+    "mz": "^2.1.0"
+  }
+}
