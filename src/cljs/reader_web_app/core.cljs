@@ -1,6 +1,10 @@
 (ns reader-web-app.core
   (:require [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]))
+            [om.dom :as dom :include-macros true]
+            [reader-web-app.routes :as routes]
+            [reader-web-app.router :as router]
+            [reader-web-app.state :as state]
+            [reader-web-app.components.adding-book :as adding-book]))
 
 (enable-console-print!)
 
@@ -40,17 +44,13 @@
     (reify om/IRender
       (render [_]
         (dom/div #js {:className "container"}
-          (dom/h1 nil (:text data))
-           ;; (dom/button #js {:className "button" :onClick #(incrementCounter data)} "Click me!")
-           ;; (dom/span nil (:counter data))
-          (om/build covers-grid (:covers data))))))
-  app-state
+          (om/build adding-book/adding-book [])
+          (dom/div #js {:className "content-container"}
+            (dom/a #js {:href "/"} "Home")
+            (dom/a #js {:href "/books"} "Books")
+            (om/build ((:route data) routes/routes) []))))))
+  state/app-state
   {:target (. js/document (getElementById "app"))})
-
-
-
-;; (swap! app-state update-in [:counter] inc)
-
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
   ;; your application
