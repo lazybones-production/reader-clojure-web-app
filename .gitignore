@@ -4,6 +4,8 @@ node_modules
 /checkouts
 /resources/out/*
 /resources/public/js/*
+/resources/public/book-bodies/*
+/resources/public/book-covers/*
 pom.xml
 pom.xml.asc
 *.jar

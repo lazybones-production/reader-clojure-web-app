@@ -2,9 +2,14 @@
   (:use korma.core)
   (:require reader-web-app.db))
 
-(declare books)
+(declare books users)
 
 (defentity books
   (pk :id)
   (table :books)
   (entity-fields :title :id))
+
+(defentity users
+  (pk :id)
+  (table :users)
+  (entity-fields :name :id))
