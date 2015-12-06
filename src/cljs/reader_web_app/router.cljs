@@ -7,7 +7,10 @@
   (:import goog.history.Html5History
            goog.Uri))
 
+(enable-console-print!)
+
 (defroute "/" []
+  (println "setting defailt route...")
   (swap! state/app-state assoc :route :home))
 
 (defroute "/books" []

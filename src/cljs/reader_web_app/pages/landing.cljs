@@ -14,7 +14,7 @@
       (dom/div #js {:className "book-card"}
         (dom/div #js {:className "book-card-cover-container"}
           (dom/img #js {:className "book-card-cover"
-                        :src (if (nil? (:cover book)) (.png (js/Trianglify #js {:width 200, :height 280})) (:cover book))
+                        :src (:cover book)
                         :alt "cover"}))))))
 
 (defn books-grid [books owner]
