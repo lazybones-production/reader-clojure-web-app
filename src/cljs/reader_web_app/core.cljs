@@ -15,7 +15,6 @@
     (reify om/IRender
       (render [_]
         (dom/div #js {:className "container"}
-          #_(om/build adding-book/adding-book [])
           (dom/div #js {:className "content-container"}
             (dom/a #js {:href "/"} "Home")
             (dom/a #js {:href "/books"} "Books")

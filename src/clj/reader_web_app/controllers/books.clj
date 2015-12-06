@@ -9,6 +9,6 @@
   {:status 200
    :body {:data (book/find-by-id id)}})
 
-(defn create-book [{{:keys [book]} :params}]
+(defn create-book [req]
   {:status 201
-   :body {:data (book/create-book book)}})
+   :body {:data (book/create-book ((req :body) :book))}})

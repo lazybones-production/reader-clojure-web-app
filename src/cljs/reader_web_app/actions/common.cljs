@@ -1,13 +1,16 @@
 (ns reader-web-app.actions.common
   (:require [reader-web-app.utils.api :as api]
-            [reader-web-app.state :as state]))
+            [reader-web-app.state :as state]
+            [secretary.core :as secretary]))
+
+(enable-console-print!)
 
 (defn set-books-loading [is-fetching]
   (swap! state/app-state assoc-in [:books] {:is-fetching is-fetching}))
 
 (defn get-all-books-success [res]
   (set-books-loading false)
-  ())
+  (swap! state/app-state update-in [:books] merge {:items (get res "data")}))
 
 (defn update-book-progress [id progress]
   ()
@@ -56,9 +59,14 @@
 (defn update-progress [in-progress]
   (swap! state/app-state assoc :in-progress in-progress))
 
-(defn upload-book-success []
+(defn upload-book-success [res]
   (update-progress false)
-  ())
+  (let [book (:data res)
+        id (:id book)]
+    (println book res)
+    (swap! state/app-state update-in [:books :items] conj book)
+    (swap! state/app-state update-in [:book] merge {id book})
+    (secretary/dispatch! (str "/books/" id))))
 
 (defn upload-book-error []
   (update-progress false)
@@ -70,6 +78,12 @@
                            :handler upload-book-success
                            :error-handler upload-book-error
                            :keywords? true}))
+
+(defn load-body-success [id data]
+  (swap! state/app-state update-in [:book] merge {id {:book data}}))
+
+(defn load-body [id]
+  (api/xhr-get (str "/book-bodies/" id ".xml") {:handler (partial load-body-success id)}))
 
 (defn updateSettings []
   ())

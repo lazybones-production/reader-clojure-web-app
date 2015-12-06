@@ -9,8 +9,13 @@
     (reify
     om/IWillMount
     (will-mount [this]
-      (actions/get-book id))
+      (actions/get-book id)
+      (actions/load-body id))
     om/IRender
     (render [this]
       (dom/div #js {:className "123"}
-        (om/build reader/reader data))))))
+        (let [book (get (:book data) id)
+              data (:book book)
+              exists? (nil? data)]
+          (if exists?
+            (om/build reader/reader data))))))))
