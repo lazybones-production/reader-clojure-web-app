@@ -37,7 +37,7 @@
   (if (nil? data)
     nil
     (case (str k)
-      "image" (saver (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (xml/content data))) (str cover-path uuid) ".jpeg")
+      "image" (saver (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (xml/content data))) (str cover-path uuid ".jpeg"))
       "body" (let [bp (str body-path uuid ".xml")]
                (spit bp data)
                bp)))) ; (saver (.toCharArray data) (str body-path (.toString (char-array 29)) ".xml"))

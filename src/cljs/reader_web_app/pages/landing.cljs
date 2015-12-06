@@ -1,7 +1,8 @@
 (ns reader-web-app.pages.landing
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [reader-web-app.actions.common :as actions]))
+            [reader-web-app.actions.common :as actions]
+            [reader-web-app.components.adding-book :as adding-book]))
 
 
 
@@ -39,7 +40,8 @@
               (dom/span #js {:className "logo"} "Shelf")
               " is the best place to just pick up a book, start reading and continue on any device even you are offline.")
             (dom/p #js {:className "welcome-dropzone-description"} "Drop your book anywhere on this page to start reading.")
-            (dom/i #js {:className "fa fa-plus-square-o drop-icon"} "")
+            (dom/i #js {:className "fa fa-plus-square-o drop-icon"}
+              (om/build adding-book/adding-book []))
             (dom/p #js {:className "welcome-show-library"}
               "Or "
               (dom/a #js {:className "sl-link-btn"}
@@ -53,4 +55,4 @@
     (render [this]
       (dom/div nil
                ;; (dom/h1 nil "Heelo from landing page")
-               (om/build books-grid (:books data))))))
+               (om/build books-grid ((:books data) :items))))))

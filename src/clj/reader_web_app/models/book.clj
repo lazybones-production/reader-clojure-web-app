@@ -23,5 +23,7 @@
 (defn create-book [book]
   (let [id (utils/uuid)
         meta ((fb2/parse-book book id) :meta)]
+    (if (nil? meta)
+      "error occurs")
     (insert e/books
       (values (merge meta {:id id})))))
