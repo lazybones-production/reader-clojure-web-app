@@ -27,12 +27,13 @@
             "rollback" ["run" "-m" "reader-web-app.migrations/rollback"]}
   :cljsbuild {
     :builds [{
-        :source-paths ["src/cljs"]
+    :source-paths ["src/cljs"]
+        ; The standard ClojureScript compiler options:
+        ; (See the ClojureScript compiler documentation for details.)
         :compiler {
-            :main reader-web-app.core
-            :output-to "resources/public/js/main.js"
-            :optimizations :whitespaces
-            :pretty-print true}}]}
+          :output-to "resources/public/js/main3.js"  ; default: target/cljsbuild-main.js
+          :optimizations :advanced
+          :pretty-print true}}]}
   :figwheel {:css-dirs ["resources/public"]}
   :ring {:handler reader-web-app.core/app}
   :main ^:skip-aot reader-web-app.core
