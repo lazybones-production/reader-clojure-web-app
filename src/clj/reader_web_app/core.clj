@@ -4,8 +4,7 @@
             [reader-web-app.models.books :as books]
             [ring.util.response :refer [response]]
             [ring.middleware.json :as middleware]
-            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
-            [compojure.handler :as handler]))
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
 (defn get-books [_]
     {:status 200
