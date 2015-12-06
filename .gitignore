@@ -4,10 +4,11 @@ node_modules
 /checkouts
 /resources/out/*
 /resources/public/js/*
+/resources/public/book-bodies/*.xml
+/resources/public/book-covers/*.jpeg
 pom.xml
 pom.xml.asc
 *.jar
-*.fb2
 *.class
 /.lein-*
 /.nrepl-port

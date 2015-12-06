@@ -20,7 +20,7 @@
             (dom/a #js {:href "/"} "Home")
             (dom/a #js {:href "/books"} "Books")
             (dom/a #js {:href "/books/1"} "BOOK")
-            (om/build ((:route data) routes/routes) data))))))
+            #_(om/build ((:route data) routes/routes) data))))))
   state/app-state
   {:target (. js/document (getElementById "app"))})
 

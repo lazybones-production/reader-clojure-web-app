@@ -13,12 +13,22 @@
       (is (= (:status response) 200))))
 
   (testing "create a book"
-    (let [response (app (mock/request :post "/books"))]
-      (is (= (:status response) 201))))
+    (let [book (slurp "book.fb2")
+          response (app (mock/request :post "/books" {"book" book}))]
+      (is (= (:status response) 201)))))
 
-  (testing "delete a book"
-    (let [response (app (mock/request :delete "/books/1"))]
-      (is (= (:status response) 200)))))
+(deftest users-test
+  (testing "list users"
+    (let [response (app (mock/request :get "/users"))]
+      (is (= (:status response) 200))))
+
+  (testing "user entity"
+    (let [response (app (mock/request :get "/users/1"))]
+      (is (= (:status response) 200))))
+
+  (testing "create a user"
+    (let [response (app (mock/request :post "/users" {"name" "Vasya"}))]
+      (is (= (:status response) 201)))))
 
 (deftest not-found
   (testing "not found route")

@@ -19,7 +19,7 @@
 
 (defn get-all-books-all []
   (set-books-loading true)
-  (api/get "/books" {:handler get-all-books-success
+  (api/xhr-get "/books" {:handler get-all-books-success
                      :error-handler get-all-books-error}))
 
 (defn get-all-books []
@@ -41,7 +41,7 @@
 
 (defn get-book-call [id]
   (setBookLoading id true)
-  (api/get (str "/books/" id) {:handler (partial get-book-success id)
+  (api/xhr-get (str "/books/" id) {:handler (partial get-book-success id)
                                :error-handler (partial get-book-error id)}))
 
 (defn get-book [id]
@@ -66,7 +66,7 @@
 
 (defn upload-book [book]
   (update-progress true)
-  (api/post-json "/books" {:params {:book book}
+  (api/xhr-post-json "/books" {:params {:book book}
                            :handler upload-book-success
                            :error-handler upload-book-error
                            :keywords? true}))
