@@ -1,7 +1,7 @@
 (ns reader-web-app.component.books-grid
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [reader-web-app.component.book-card :as book-card]))
+            [reader-web-app.components.book-card :as book-card]))
 
 (defn books-grid [data owner]
   (reify

@@ -31,7 +31,7 @@
   (setBookLoading id false)
   ())
 
-(defn get-book-error [err]
+(defn get-book-error [id err]
   (setBookLoading id false)
   ())
 
@@ -43,7 +43,7 @@
 (defn get-book [id]
   (let [{book :book} @state/app-state
         should-fetch (nil? (get book id))]
-    (if (should-fetch)
+    (if (= should-fetch true)
       (get-book-call id))))
 
 (defn getUserBooks []
@@ -70,5 +70,5 @@
 (defn updateSettings []
   ())
 
-(get updateBookInfo []
+(defn updateBookInfo []
   ())
