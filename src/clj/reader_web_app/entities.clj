@@ -7,4 +7,4 @@
 (defentity books
   (pk :id)
   (table :books)
-  (entity-fields :title))
+  (entity-fields :title :id))

@@ -199,6 +199,10 @@ body{
   bottom: 60px;
 }
 
+a
+  position relative
+  z-index 22222
+
 .dnd-container
   position fixed
   left 0
@@ -230,3 +234,18 @@ body{
   border-top-left-radius: .3em
   border-bottom-right-radius: .3em
   animation: turn 1.5s infinite,corner 1.5s infinite
+
+@keyframes turn
+  to
+    transform rotate(90deg) translate(0.5em, 0.5em)
+
+
+@keyframes corner
+  30%
+    border-radius 0.075em
+  100%
+    border-top-left-radius 0.05em
+    border-bottom-right-radius 0.05em
+    border-top-right-radius 0.3em
+    border-bottom-left-radius 0.3em
+
