@@ -3,8 +3,11 @@
   (:import [javax.xml.bind.DatatypeConverter])
   (:import [java.io.FileOutputStream]))
 
+(def cover-path "resources/public/book-covers/")
+(def body-path "resources/public/book-bodies/")
+
 (defn save-cover
-  [raw-binary-jpg, cover-path]
+  [raw-binary-jpg]
   (if (nil? raw-binary-jpg)
     nil
     (let [binary-jpg (first (xml/content raw-binary-jpg))
@@ -16,3 +19,25 @@
        (finally (.close fos)))
       full-cover))
   )
+
+(defn saver
+  [data, data-path]
+  (println "ok")
+  (let [fos (java.io.FileOutputStream. data-path)]
+    (try
+      (.write fos data)
+      (catch clojure.lang.ExceptionInfo e (println (str "SaveFileError: " e)))
+      (finally (try
+                  (.close fos)
+                  (catch clojure.lang.ExceptionInfo e (println (str "OnCloseFileConnectExeption:" e))))))
+    data-path))
+
+(defn save-to-file
+  [data, k]
+  (if (nil? data)
+    nil
+    (case (str k)
+      "image" (saver (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (xml/content data))) (str cover-path (.toString (char-array 29)) ".jpeg"))
+      "body" (let [bp (str body-path (.toString (char-array 29)) ".xml")]
+        (spit bp data)
+        bp)))) ; (saver (.toCharArray data) (str body-path (.toString (char-array 29)) ".xml"))

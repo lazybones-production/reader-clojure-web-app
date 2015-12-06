@@ -1,9 +1,12 @@
 (ns reader-web-app.fb2parce
   (:require [clojure.xml :as xml]
-            [reader-web-app.fsw :as fsw])
+            [reader-web-app.fsw :as fsw]
+            [clojure.zip :as zip])
   (:import [javax.xml.bind.DatatypeConverter])
   (:import [java.io.FileOutputStream]))
 
+
+(def list-of-meta [:first-name :last-name :book-title :genre])
 ; (defn is-en?
 ;   [data]
 ;     (loop [maps data]
@@ -50,21 +53,24 @@
           (recur nodess))))))
 
 (defn parse-book
-  [book-path]
-  (let [raw-book (xml/parse book-path)
+  [book]
+  (let [raw-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
+        raw-xml-book (slurp book)
+        raw-xml-book-wos (clojure.string/replace raw-xml-book #"(\t|\n|\r)" "")
         raw-book-content (xml/content raw-book)
         raw-meta-info (get-node raw-book-content :description)
-        raw-body (get-node raw-book-content :body)
+        ; raw-body (get-node raw-book-content :body)
+        raw-body (re-find #"(?i)<body>.*</body>" raw-xml-book-wos)
         raw-binary-jpg (get-node raw-book-content :binary)
-        f-meta (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))
-        cover (fsw/save-cover raw-binary-jpg "resources/public/book-covers/")
-        ]
+        f-meta (flatten (map #(get-meta-info raw-meta-info %) list-of-meta))
+        cover (fsw/save-to-file raw-binary-jpg "image")
+        body (fsw/save-to-file raw-body "body")] ;
     ; (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))
     ; (println raw-meta-info)
     ; (String. (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (clojure.xml/content raw-binary-jpg))))
     ; (fsw/save-cover raw-binary-jpg "resources/public/book-covers/")
     ; (fsw/save-body raw-body "resources/private/book-bodies/")
-    {:meta f-meta :cover cover}))
+    {:meta f-meta :cover cover :body body}))
 
 (defn -main
   [some]

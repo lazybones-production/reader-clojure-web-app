@@ -4,15 +4,16 @@
             [reader-web-app.models.books :as books]
             [ring.util.response :refer [response]]
             [ring.middleware.json :as middleware]
-            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
+            [reader-web-app.db2parce :as fb2]))
 
 (defn get-books [_]
     {:status 200
      :body {:data (books/find-all)}})
 
-(defn create-book [_]
-  {:status 201
-   :body {:data (books/create-book)}})
+(defn create-book [book]
+  {:status 200
+   :body {:data (sb2/parse-book (book :book))}})
 
 (defn delete-book [_]
     {:status 200
