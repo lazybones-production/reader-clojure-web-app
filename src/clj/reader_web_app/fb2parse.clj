@@ -1,4 +1,4 @@
-(ns reader-web-app.fb2parce
+(ns reader-web-app.fb2parse
   (:require [clojure.xml :as xml])
   (:import [javax.xml.bind.DatatypeConverter])
   (:import [java.io.FileOutputStream])
@@ -30,7 +30,7 @@
           (if (re-matches #"[A-Za-z0-9\s]*" (first (raw-meta-info :content)))
             {k (raw-meta-info :content)}
             nil))
-        (get-meta-info (raw-meta-info :content) k))      
+        (get-meta-info (raw-meta-info :content) k))
       (if (vector? raw-meta-info)
         (loop [nodes raw-meta-info
              meta-info []]
@@ -83,4 +83,4 @@
 
 (defn -main
   [some]
-  (print "Karter_Kris_Raspinatel.fb2")) 
+  (print "Karter_Kris_Raspinatel.fb2"))
