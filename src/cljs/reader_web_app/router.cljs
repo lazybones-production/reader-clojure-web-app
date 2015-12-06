@@ -7,10 +7,7 @@
   (:import goog.history.Html5History
            goog.Uri))
 
-(enable-console-print!)
-
 (defroute "/" []
-  (println "setting defailt route...")
   (swap! state/app-state assoc :route :home))
 
 (defroute "/books" []
@@ -33,13 +30,13 @@
                   (.setPathPrefix "")
                   (.setEnabled true))]
 
-    (events/listen js/document "click"
-                   (fn [e]
-                     (. e preventDefault)
-                     (let [path (.getPath (.parse Uri (.-href (.-target e))))
-                           title (.-title (.-target e))]
-                       (when path
-                         (. history (setToken path title))))))))
+                  (events/listen js/document "click"
+                             (fn [e]
+                               (let [path (.getPath (.parse Uri (.-href (.-target e))))
+                                     title (.-title (.-target e))]
+                                 (when (secretary/locate-route path)
+                                   (. e preventDefault)
+                                   (. history (setToken path title))))))))
 
 ;; need to run this after routes have been defined
 (hook-browser-navigation!)
