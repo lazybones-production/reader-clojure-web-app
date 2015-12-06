@@ -13,6 +13,10 @@
 (defroute "/books" []
   (swap! state/app-state assoc :route :books))
 
+(defroute "/books/:id" {:as params}
+  (swap! state/app-state (f [state] (merge state {:params params
+                                                  :route book}))))
+
 ;; -------------------------
 ;; History
 ;; from here – https://gist.github.com/city41/aab464ae6c112acecfe1

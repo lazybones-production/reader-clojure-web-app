@@ -1,6 +1,8 @@
 (ns reader-web-app.state)
 
 (defonce app-state (atom {:route :home
+                          ;; route params
+                          :params {}
                           ;; list of books to render
                           ;; without any caching
                           :books {:is-fetching false
