@@ -21,6 +21,19 @@
 ;   [raw-meta-info, ks]
 ;   (map #(get-meta-info raw-meta-info %) {:author}))
 
+; (defn convert-arr-to-map
+;   [arr]
+;   (loop [marr arr
+;          new-map {}]
+;     (if (empty? arr)
+;       new-map
+;       (let [[f && tail] marr
+;             next (rest tail)]
+;         (if (symbol? f)
+;           )
+        
+;         ))))
+
 (defn get-meta-info
   [raw-meta-info, k]
   (if (or (string? raw-meta-info) (nil? raw-meta-info))
@@ -53,7 +66,7 @@
           (recur nodess))))))
 
 (defn parse-book
-  [book]
+  [book, uuid]  
   (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
         ; raw-xml-book (slurp book)
         raw-xml-book-wos (clojure.string/replace book #"(\t|\n|\r)" "")
@@ -63,8 +76,8 @@
         raw-body (re-find #"(?i)<body>.*</body>" raw-xml-book-wos)
         raw-binary-jpg (get-node raw-book-content :binary)
         f-meta (flatten (map #(get-meta-info raw-meta-info %) list-of-meta))
-        cover (fsw/save-to-file raw-binary-jpg "image")
-        body (fsw/save-to-file raw-body "body")] ;
+        cover (fsw/save-to-file raw-binary-jpg "image" uuid)
+        body (fsw/save-to-file raw-body "body" uuid)] ;
     ; (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))
     ; (println raw-meta-info)
     ; (String. (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (clojure.xml/content raw-binary-jpg))))

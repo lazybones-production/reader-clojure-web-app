@@ -20,7 +20,3 @@
   (select e/books
     (where {field value})))
 
-(defn create-book [book]
-  (let [id (utils/uuid)
-        meta (fb2/parse-book book)]
-    {:title (get (get meta :meta) :book-title) :id id}))
