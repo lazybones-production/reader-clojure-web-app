@@ -16,7 +16,16 @@ CREATE TABLE books (
   created_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TRIGGER update_updated_at_books
     BEFORE UPDATE ON books FOR EACH ROW EXECUTE
+    PROCEDURE update_updated_at_column();
+
+CREATE TABLE users (
+  id          varchar(256) PRIMARY KEY,
+  name        varchar(80) NOT NULL CHECK (name <> ''),
+  created_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TRIGGER update_updated_at_users
+    BEFORE UPDATE ON users FOR EACH ROW EXECUTE
     PROCEDURE update_updated_at_column();

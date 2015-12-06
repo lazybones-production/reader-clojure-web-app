@@ -32,7 +32,7 @@
           (if (re-matches #"[A-Za-z0-9\s]*" (first (raw-meta-info :content)))
             {k (raw-meta-info :content)}
             nil))
-        (get-meta-info (raw-meta-info :content) k))      
+        (get-meta-info (raw-meta-info :content) k))
       (if (vector? raw-meta-info)
         (loop [nodes raw-meta-info
              meta-info []]
@@ -53,11 +53,11 @@
           (recur nodess))))))
 
 (defn parse-book
-  [book]  
+  [book]
   (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
         ; raw-xml-book (slurp book)
         raw-xml-book-wos (clojure.string/replace book #"(\t|\n|\r)" "")
-        raw-book-content (xml/content raw-book)
+        raw-book-content (xml/content raw-xml-book)
         raw-meta-info (get-node raw-book-content :description)
         ; raw-body (get-node raw-book-content :body)
         raw-body (re-find #"(?i)<body>.*</body>" raw-xml-book-wos)
@@ -70,8 +70,8 @@
     ; (String. (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (clojure.xml/content raw-binary-jpg))))
     ; (fsw/save-cover raw-binary-jpg "resources/public/book-covers/")
     ; (fsw/save-body raw-body "resources/private/book-bodies/")
-    {:meta f-meta :cover cover :body body}))
+    {:meta (apply hash-map f-meta) :cover cover :body body}))
 
 (defn -main
   [some]
-  (print "Karter_Kris_Raspinatel.fb2")) 
+  (print "Karter_Kris_Raspinatel.fb2"))
