@@ -10,4 +10,6 @@
       (actions/get-all-books))
     om/IRender
     (render [this]
-      (dom/h1 nil "Heelo from books page"))))
+      (dom/div nil
+        (dom/img #js {:src (.png (js/Trianglify #js {:width 200, :height 280}))})
+        (dom/img #js {:src (.png (js/Trianglify #js {:width 200, :height 280}))})))))

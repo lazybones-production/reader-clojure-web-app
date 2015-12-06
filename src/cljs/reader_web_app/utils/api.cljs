@@ -6,15 +6,15 @@
 (defn prepare-url [url]
   (str api-prefix url))
 
-(defn get
+(defn xhr-get
   ([url] (GET url {:response-format :json}))
   ([url params] (GET (prepare-url url) (assoc params :response-format :json))))
 
-(defn post
+(defn xhr-post
   ([url] (POST url {:response-format :json}))
   ([url params] (POST (prepare-url url) (assoc params :response-format :json))))
 
-(defn post-json
+(defn xhr-post-json
   ([url] (POST url {:response-format :json
                     :format :json}))
   ([url params] (POST (prepare-url url) (merge params {:response-format :json

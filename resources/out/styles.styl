@@ -1,202 +1,163 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-html, body {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
-
 .app-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-
 .book-card-cover {
-  width: 200px;
-  height: 280px;
-  border-radius: 2px;
+    width: 200px;
+    height: 280px;
+    border-radius: 2px;
 }
-
 .book-cards-grid-container {
-  padding-top: 50px;
-  //background-color: #364663;
-  background: linear-gradient(180deg, #364663, darken(#364663, 15%));
-  width: 100%;
-  height: 100%;
+    padding-top: 50px;
+    background: linear-gradient(180deg, #364663, #1b2332);
+    width: 100%;
+    height: 100%;
 }
-
 .book-cards-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 }
-
 .book-card-cover-container {
-  position: relative;
+    position: relative;
 }
-
 .book-card-cover-container .fa {
-  font-size: 25px;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  opacity: 0.8;
-  -webkit-filter: drop-shadow(0px 0px 3px black);
-  -moz-filter: drop-shadow(0px 0px 3px black);
-  filter: drop-shadow(0px 0px 3px black);
+    font-size: 25px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    opacity: 0.8;
+    -webkit-filter: drop-shadow(0px 0px 3px black);
+    -moz-filter: drop-shadow(0px 0px 3px black);
+    filter: drop-shadow(0px 0px 3px black);
 }
-
 .book-card {
-  //display: flex;
-  flex-direction: column;
-  //justify-content: center;
-
-  margin: 10px;
-  //width: 200px;
-  //height: 275px;
-  padding: 2px;
-  border: 1px solid #555;
-  border-radius: 4px;
-  background-color: #000;
-  box-shadow: 3px 3px 5px 0px rgba(20, 20, 20, 0.6);
+    flex-direction: column;
+    margin: 10px;
+    padding: 2px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #000;
+    box-shadow: 3px 3px 5px 0px rgba(20, 20, 20, 0.6);
 }
-
 .book-card-progress-container {
-  width: 100%;
-  height: 7px;
-  padding: 1px;
-  background-color: darken(#364663, 15%);
+    width: 100%;
+    height: 7px;
+    padding: 1px;
+    background-color: #1b2332;
 }
-
 .book-card-progress {
-  position: relative;
-  height: 100%;
-  width: 30%;
-  background-color: lighten(indigo, 15%);
-  opacity: 0.8;
+    position: relative;
+    height: 100%;
+    width: 30%;
+    background-color: #7700cf;
+    opacity: 0.8;
 }
-
 .heading {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  //height: 30px;
-  padding: 5px 20px;
-  background-color: whitesmoke;
-  z-index: 999;
-  //opacity: 0.8;
-  background-color: #2B386B;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 5px 20px;
+    background-color: whitesmoke;
+    z-index: 999;
+    background-color: #2B386B;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.8);
 }
-
 .logo {
-  display: inline-block;
-  border-bottom: 4px solid white;
-  color: white;
+    display: inline-block;
+    border-bottom: 4px solid white;
+    color: white;
 }
-
 .heading .logo {
-  font-size: 24px;
+    font-size: 24px;
 }
-
 .welcome {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 50px;
 }
-
 .welcome-text-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  padding: 20px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
 }
-
 .welcome-app-description {
-  font-size: 32px;
-  max-width: 600px;
-  text-shadow: 2px 2px 3px black;
+    font-size: 32px;
+    max-width: 600px;
+    text-shadow: 2px 2px 3px black;
 }
-
 .welcome-dropzone-description {
-  font-size: 26px;
-  text-shadow: 2px 2px 3px black;
+    font-size: 26px;
+    text-shadow: 2px 2px 3px black;
 }
-
 .welcome-show-library {
-  font-size: 26px;
-  text-shadow: 2px 2px 3px black;
+    font-size: 26px;
+    text-shadow: 2px 2px 3px black;
 }
-
 .overlay-dropzone {
-  background-color: darken(#364663, 20%);
-  opacity: 0.9;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    background-color: #121721;
+    opacity: 0.9;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
-
 .drop-icon {
-  font-size: 8em;
-  opacity: 0.3
+    font-size: 8em;
+    opacity: 0.3;
 }
-
 .logo-in-text {
-  text-decoration
+    text-decoration;
 }
-
 .sl-link-btn {
-  border: 1px solid white;
-  border-radius: 3px;
-  padding: 3px 10px 8px 10px;
-  margin: 10px;
-  cursor: pointer;
-  background-color: rgba(200, 200, 200, 0.1);
+    border: 1px solid white;
+    border-radius: 3px;
+    padding: 3px 10px 8px 10px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: rgba(200, 200, 200, 0.1);
 }
-
-
-///////////////////////////////////////////////
-// Medium <body> style
-///////////////////////////////////////////////
-
-body{
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Open Sans","Helvetica Neue",sans-serif;
-  letter-spacing: 0;
-  font-weight: 400;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on;
-  color: rgba(0,0,0,0.8);
-  font-size: 18px;
-  line-height: 1.4;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 18px;
+    line-height: 1.4;
 }
-
-///////////////////////////////////////////////
-// Demo
-///////////////////////////////////////////////
 .overlay-toggle {
-  position: fixed;
-  right: 30px;
-  bottom: 60px;
+    position: fixed;
+    right: 30px;
+    bottom: 60px;
 }
 
 a
