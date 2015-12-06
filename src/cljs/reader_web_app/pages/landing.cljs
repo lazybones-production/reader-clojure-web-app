@@ -37,13 +37,7 @@
               " is the best place to just pick up a book, start reading and continue on any device even you are offline.")
             (dom/p #js {:className "welcome-dropzone-description"} "Drop your book anywhere on this page to start reading.")
             (dom/i #js {:className "fa fa-plus-square-o drop-icon"}
-              (om/build adding-book/adding-book []))
-            (dom/p #js {:className "welcome-show-library"}
-              "Or "
-              (dom/a #js {:className "sl-link-btn"}
-                (dom/i #js {:className "fa fa-search"} "")
-                "search library")
-              " collected by other readers.")))))))
+              (om/build adding-book/adding-book []))))))))
 
 (defn landing-page [data owner]
   (reify
