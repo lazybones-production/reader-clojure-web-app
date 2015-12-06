@@ -1,4 +1,4 @@
-(ns reader-web-app.fb2parce
+(ns reader-web-app.fb2parse
   (:require [clojure.xml :as xml]
             [reader-web-app.fsw :as fsw]
             [clojure.zip :as zip])
@@ -53,10 +53,10 @@
           (recur nodess))))))
 
 (defn parse-book
-  [book]
-  (let [raw-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
-        raw-xml-book (slurp book)
-        raw-xml-book-wos (clojure.string/replace raw-xml-book #"(\t|\n|\r)" "")
+  [book]  
+  (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
+        ; raw-xml-book (slurp book)
+        raw-xml-book-wos (clojure.string/replace book #"(\t|\n|\r)" "")
         raw-book-content (xml/content raw-book)
         raw-meta-info (get-node raw-book-content :description)
         ; raw-body (get-node raw-book-content :body)
