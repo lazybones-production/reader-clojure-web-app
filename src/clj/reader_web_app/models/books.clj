@@ -19,9 +19,3 @@
 (defn find-all-by [field value]
   (select e/books
     (where {field value})))
-
-(defn create-book [book]
-  (let [id (utils/uuid)]
-    (insert e/books
-      (values {:title "Test" :id id})))
-  (fb2/parse-book (book :book)))
