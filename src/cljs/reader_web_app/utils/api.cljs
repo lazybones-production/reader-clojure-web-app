@@ -1,7 +1,7 @@
 (ns reader-web-app.utils.api
   (:require [ajax.core :refer [GET POST]]))
 
-(def api-prefix "http://94.237.25.87/api")
+(def api-prefix "http://127.0.0.1:3000/api")
 
 (defn prepare-url [url]
   (str api-prefix url))

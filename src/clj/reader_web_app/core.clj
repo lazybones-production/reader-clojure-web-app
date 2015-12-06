@@ -5,7 +5,7 @@
             [ring.util.response :refer [response]]
             [ring.middleware.json :as middleware]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
-            [reader-web-app.db2parce :as fb2]))
+            [reader-web-app.fb2parce :as fb2]))
 
 (defn get-books [_]
     {:status 200
@@ -13,7 +13,7 @@
 
 (defn create-book [book]
   {:status 200
-   :body {:data (sb2/parse-book (book :book))}})
+   :body {:data (fb2/parse-book (book :book))}})
 
 (defn get-book [id]
   {:status 200
