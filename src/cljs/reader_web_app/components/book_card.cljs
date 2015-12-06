@@ -10,6 +10,6 @@
         (dom/img #js {:className "book-card-cover"
                       :src (:image data)
                       :alt (:title data) })
-        (dom/i #js {:className }))
+        (dom/i #js {:className "fa fa-heart"}))
       (dom/div #js {:className "book-card-progress-container"}
         (dom/div #js {:className "book-card-progress"})))))
