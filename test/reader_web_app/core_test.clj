@@ -10,11 +10,11 @@
 
   (testing "book entity"
     (let [response (app (mock/request :get "/books/1"))]
-      (is (= (:status response) 200))))
+      (is (= (:status response) 200)))))
 
   ;; I have no idea why this request send
   ;; book inside :params, not inside :body
-  
+
   ;(testing "create a book"
   ;  (let [book (slurp "book.fb2")
   ;        response (app (mock/request :post "/books" {:book book}))]
