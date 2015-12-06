@@ -44,11 +44,11 @@
     (reify om/IRender
       (render [_]
         (dom/div #js {:className "container"}
-          (om/build adding-book/adding-book [])
+          #_(om/build adding-book/adding-book [])
           (dom/div #js {:className "content-container"}
             (dom/a #js {:href "/"} "Home")
             (dom/a #js {:href "/books"} "Books")
-            (om/build ((:route data) routes/routes) []))))))
+            (om/build ((:route data) routes/routes) data))))))
   state/app-state
   {:target (. js/document (getElementById "app"))})
 (defn on-js-reload []
