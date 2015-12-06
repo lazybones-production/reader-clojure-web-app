@@ -6,7 +6,7 @@
   (:import [java.io.FileOutputStream]))
 
 
-(def list-of-meta [:first-name :last-name :book-title :genre])
+(def list-of-meta [:firstname :lastname :title :genre])
 ; (defn is-en?
 ;   [data]
 ;     (loop [maps data]
