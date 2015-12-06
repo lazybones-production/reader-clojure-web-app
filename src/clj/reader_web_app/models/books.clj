@@ -1,7 +1,8 @@
 (ns reader-web-app.models.books
   (:use korma.core)
   (:require [reader-web-app.entities :as e]
-            [reader-web-app.utils.uuid :as utils]))
+            [reader-web-app.utils.uuid :as utils]
+            [reader-web-app.fb2parse :as fb2]))
 
 (defn find-all []
   (select e/books))
@@ -19,7 +20,8 @@
   (select e/books
     (where {field value})))
 
-(defn create-book []
+(defn create-book [book]
   (let [id (utils/uuid)]
     (insert e/books
-      (values {:title "Test" :id id}))))
+      (values {:title "Test" :id id})))
+  (fb2/parse-book (book :book)))

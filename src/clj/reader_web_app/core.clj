@@ -10,13 +10,13 @@
     {:status 200
      :body {:data (books/find-all)}})
 
+(defn create-book [book]
+  {:status 500
+   :body {:data (books/create-book book)}})
+
 (defn get-book [id]
   {:status 200
    :body {:data (books/find-by-id id)}})
-
-(defn create-book [_]
-  {:status 201
-   :body {:data (books/create-book)}})
 
 (defn delete-book [_]
     {:status 200
@@ -26,7 +26,7 @@
   (context "/books" []
     (GET "/" [] get-books)
     (GET "/:id" [id] (get-book id))
-    (POST "/" [] create-book)
+    (POST "/" [book] (create-book book))
     (DELETE "/:id" [] delete-book))
   (route/not-found {:body {:error "Not such route"}}))
 
