@@ -8,10 +8,9 @@ CREATE OR REPLACE FUNCTION update_updated_at_column()
 
 CREATE TABLE books (
   id          varchar(256) PRIMARY KEY,
-  title       varchar(80) NOT NULL CHECK (title <> ''),
-  cover       varchar(80),
-  author      varchar(80),
-  body        varchar(80),
+  title  varchar(80) NOT NULL CHECK (title <> ''),
+  firstname  varchar(80),
+  lastname   varchar(80),
   genre       varchar(80),
   created_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP

@@ -26,24 +26,13 @@
   :aliases {"migrate"  ["run" "-m" "reader-web-app.migrations/migrate"]
             "rollback" ["run" "-m" "reader-web-app.migrations/rollback"]}
   :cljsbuild {
-    :builds
-    [{
-        :id "dev"
-        :figwheel true
+    :builds [{
         :source-paths ["src/cljs"]
         :compiler {
             :main reader-web-app.core
-            :asset-path "js/out"
             :output-to "resources/public/js/main.js"
-            :output-dir "resources/public/js/out"
-            :source-map "resources/public/js/main.js.map"
-            :optimizations :none
-            :pretty-print true}}
-     {
-         :id "min"
-         :source-paths ["src/cljs"]
-         :optimizations :advanced
-         :pretty-print false}]}
+            :optimizations :whitespaces
+            :pretty-print true}}]}
   :figwheel {:css-dirs ["resources/public"]}
   :ring {:handler reader-web-app.core/app}
   :main ^:skip-aot reader-web-app.core

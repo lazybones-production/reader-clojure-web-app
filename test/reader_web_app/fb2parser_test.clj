@@ -5,5 +5,5 @@
 (deftest parser-test
   (testing "should-parse-fb2"
     (let [book (slurp "book.fb2")
-          meta (get (parse/parse-book book) :meta)]
-      (is (= (get meta :book-title) "The Adventures of Tom Sawyer")))))
+          meta (get (parse/parse-book book "1") :meta)]
+      (is (= (get meta :title) "The Adventures of Tom Sawyer")))))
