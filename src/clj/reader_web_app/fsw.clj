@@ -33,11 +33,11 @@
     data-path))
 
 (defn save-to-file
-  [data, k]
+  [data, k, uuid]
   (if (nil? data)
     nil
     (case (str k)
-      "image" (saver (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (xml/content data))) (str cover-path (.toString (char-array 29)) ".jpeg"))
-      "body" (let [bp (str body-path (.toString (char-array 29)) ".xml")]
+      "image" (saver (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (xml/content data))) (str cover-path uuid) ".jpeg"))
+      "body" (let [bp (str body-path uuid ".xml")]
         (spit bp data)
         bp)))) ; (saver (.toCharArray data) (str body-path (.toString (char-array 29)) ".xml"))
