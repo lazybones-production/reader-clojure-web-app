@@ -7,7 +7,7 @@
 (defentity books
   (pk :id)
   (table :books)
-  (entity-fields :title :id))
+  (entity-fields :title :id :firstname :lastname :genre))
 
 (defentity users
   (pk :id)
