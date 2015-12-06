@@ -6,4 +6,6 @@
   (reify
     om/IRender
     (render [this]
-      (dom/div nil "123"))))
+      (dom/div #js {:className "progress-container"}
+        (dom/div #js {:className "progress-value"
+                      :style #js { :width (:progress data) } })))))

@@ -14,6 +14,7 @@
                  [ring/ring-json "0.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [cljs-ajax "0.5.2"]
+                 [alandipert/storage-atom "1.2.4"]
                  [com.novemberain/monger "3.0.0-rc2"]
                  [ring/ring-mock "0.3.0"]
                  [korma "0.4.0"]

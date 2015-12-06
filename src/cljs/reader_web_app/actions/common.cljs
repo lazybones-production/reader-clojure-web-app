@@ -3,11 +3,15 @@
             [reader-web-app.state :as state]))
 
 (defn set-books-loading [is-fetching]
-  (swap! state/app-state update-in [:books] assoc :is-fetching is-fetching))
+  (swap! state/app-state assoc-in [:books] {:is-fetching is-fetching}))
 
 (defn get-all-books-success [res]
   (set-books-loading false)
   ())
+
+(defn update-book-progress [id progress]
+  ()
+  (swap! state/app-state assoc-in [:data id] {:progress progress}))
 
 (defn get-all-books-error [err]
   (set-books-loading false)
@@ -25,7 +29,7 @@
       (get-all-books-all))))
 
 (defn setBookLoading [id is-fetching]
-  (swap! state/app-state assoc-in [:books id] :is-fetching is-fetching))
+  (swap! state/app-state assoc-in [:books id] {:is-fetching is-fetching}))
 
 (defn get-book-success [id res]
   (setBookLoading id false)
