@@ -1,16 +1,18 @@
 (ns reader-web-app.core
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
+            [reader-web-app.models.books :as books]
             [ring.util.response :refer [response]]
             [ring.middleware.json :as middleware]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
 (defn get-books [_]
     {:status 200
-     :body {:data "[]"}})
+     :body {:data (books/find-all)}})
 
 (defn create-book [_]
-    {:status 201})
+  {:status 201
+   :body {:data (books/create-book)}})
 
 (defn delete-book [_]
     {:status 200
