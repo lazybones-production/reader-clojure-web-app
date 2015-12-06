@@ -1,6 +1,21 @@
 # reader-clojure-web-app [![Build Status](https://travis-ci.org/Bloomca/reader-clojure-web-app.svg?branch=master)](https://travis-ci.org/Bloomca/reader-clojure-web-app)
 
-FB2 offline reader web app in clojure
+FB2 catalog and reader web app in clojure
+
+## Concept
+
+Unfortunately, we didn't implement all features.
+Generally, it should be looking next way:
+
+[Catalog](https://slack-files.com/files-tmb/T0FG97U1M-F0G1E4RHR-d06de2a804/pasted_image_at_2015_12_07_01_51_1024.png)
+
+---
+[Card](https://slack-files.com/files-tmb/T0FG97U1M-F0G1GHR97-7a8cf52b74/pasted_image_at_2015_12_07_01_52_1024.png)
+
+---
+[Landing](https://slack-files.com/files-tmb/T0FG97U1M-F0G1D2K1T-2d6ad4a582/pasted_image_at_2015_12_07_01_54_1024.png)
+
+Actually, you could [try it yourself](http://jsfiddle.net/fkuril/xq8v8wo3/56/embedded/result/)
 
 ## Installation
 
