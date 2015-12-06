@@ -26,10 +26,6 @@
     om/IRender
     (render [_]
       (dom/div #js {:className "app-container"}
-        (dom/div #js {:className "heading"}
-          (dom/div #js {:className "logo"}
-            (dom/i #js {:className "fa fa-book" } "")
-            (dom/span nil "Shelf.")))
         (dom/div #js {:className "book-cards-grid-container"}
           (dom/div #js {:className "book-cards-grid"}
             (om/build-all book-card books)))

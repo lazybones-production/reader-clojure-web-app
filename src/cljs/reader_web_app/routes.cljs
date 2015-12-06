@@ -5,6 +5,6 @@
             [reader-web-app.pages.landing :as landing]
             [reader-web-app.pages.book :as book]))
 
-(def routes {:home landing/landing-page
-             :books books/books-page
+(def routes {:books landing/landing-page
+             :home books/books-page
              :book book/book-page})

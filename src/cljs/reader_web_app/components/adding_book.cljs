@@ -38,7 +38,4 @@
         (dom/div #js {:className "dnd-container"
                       :onDragOver (fn [e] (dragHandler owner true e))
                       :onDragLeave (fn [e] (dragHandler owner false e))
-                      :onDrop (fn [e] (dropFile owner e))}
-          (if (= (:isOver state) true)
-            (dom/div #js {:className "dnd-drop"} "I am over!!!!")
-            (dom/div nil "I am not over....")))))))
+                      :onDrop (fn [e] (dropFile owner e))})))))

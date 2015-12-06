@@ -16,9 +16,12 @@
       (render [_]
         (dom/div #js {:className "container"}
           (dom/div #js {:className "content-container"}
-            (dom/a #js {:href "/"} "Home")
-            (dom/a #js {:href "/books"} "Books")
-            (dom/a #js {:href "/books/1"} "BOOK")
+          (dom/div #js {:className "heading"}
+            (dom/div #js {:className "logo"}
+              (dom/i #js {:className "fa fa-book" } "")
+              (dom/span nil "Shelf.")
+              (dom/a #js {:className "logo-link" :href "#/"} "Books")
+              (dom/a #js {:className "logo-link" :href "#/books"} "Add your own book")))
             (om/build ((:route data) routes/routes) data))))))
   state/app-state
   {:target (. js/document (getElementById "app"))})

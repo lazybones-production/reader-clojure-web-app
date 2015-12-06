@@ -4,7 +4,8 @@
             [reader-web-app.state :as state]
             [goog.events :as events]
             [goog.history.EventType :as EventType])
-  (:import goog.history.Html5History
+  (:import goog.History
+           goog.history.Html5History
            goog.Uri))
 
 (defroute "/" []
@@ -17,26 +18,10 @@
   (swap! state/app-state (fn [x] (merge x {:params params
                                            :route :book}))))
 
-;; -------------------------
-;; History
-;; from here – https://gist.github.com/city41/aab464ae6c112acecfe1
-(defn hook-browser-navigation! []
-  (let [history (doto (Html5History.)
-                  (events/listen
-                    EventType/NAVIGATE
-                    (fn [event]
-                      (secretary/dispatch! (.-token event))))
-                  (.setUseFragment false)
-                  (.setPathPrefix "")
-                  (.setEnabled true))]
+(secretary/set-config! :prefix "#")
 
-                  (events/listen js/document "click"
-                             (fn [e]
-                               (let [path (.getPath (.parse Uri (.-href (.-target e))))
-                                     title (.-title (.-target e))]
-                                 (when (secretary/locate-route path)
-                                   (. e preventDefault)
-                                   (. history (setToken path title))))))))
 
-;; need to run this after routes have been defined
-(hook-browser-navigation!)
+;; Quick and dirty history configuration.
+(let [h (History.)]
+  (goog.events/listen h EventType/NAVIGATE #(secretary/dispatch! (.-token %)))
+  (doto h (.setEnabled true)))
