@@ -6,7 +6,8 @@
   (:import [java.io.FileOutputStream]))
 
 
-(def list-of-meta [:firstname :lastname :title :genre])
+(def list-of-meta [:first-name :last-name :book-title :genre])
+(def cc {:first-name :firstname :last-name :lastname :book-title :title :genre :genre})
 ; (defn is-en?
 ;   [data]
 ;     (loop [maps data]
@@ -43,7 +44,7 @@
         (if (nil? (first (raw-meta-info :content)))
           nil
           (if (re-matches #"[A-Za-z0-9\s]*" (first (raw-meta-info :content)))
-            {k (raw-meta-info :content)}
+            {(cc k) (raw-meta-info :content)}
             nil))
         (get-meta-info (raw-meta-info :content) k))
       (if (vector? raw-meta-info)
