@@ -27,24 +27,24 @@
 (defn setBookLoading [id is-fetching]
   (swap! state/app-state assoc-in [:books id] :is-fetching is-fetching))
 
-(defn getBookSuccess [id res]
+(defn get-book-success [id res]
   (setBookLoading id false)
   ())
 
-(defn getBookError [err]
+(defn get-book-error [err]
   (setBookLoading id false)
   ())
 
-(defn getBookCall [id]
+(defn get-book-call [id]
   (setBookLoading id true)
-  (api/get (str "/books/" id) {:handler (partial getBookSuccess id)
-                               :error-handler (partial getBookError id)}))
+  (api/get (str "/books/" id) {:handler (partial get-book-success id)
+                               :error-handler (partial get-book-error id)}))
 
-(defn getBook [id]
+(defn get-book [id]
   (let [{book :book} @state/app-state
         should-fetch (nil? (get book id))]
     (if (should-fetch)
-      (getBookCall id))))
+      (get-book-call id))))
 
 (defn getUserBooks []
   ())
