@@ -9,7 +9,6 @@ node_modules
 pom.xml
 pom.xml.asc
 *.jar
-*.fb2
 *.class
 /.lein-*
 /.nrepl-port
