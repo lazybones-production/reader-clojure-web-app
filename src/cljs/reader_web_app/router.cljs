@@ -14,8 +14,8 @@
   (swap! state/app-state assoc :route :books))
 
 (defroute "/books/:id" {:as params}
-  (swap! state/app-state (f [state] (merge state {:params params
-                                                  :route book}))))
+  (swap! state/app-state (fn [x] (merge x {:params params
+                                           :route :book}))))
 
 ;; -------------------------
 ;; History

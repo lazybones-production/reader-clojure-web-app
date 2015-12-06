@@ -15,6 +15,10 @@
   {:status 200
    :body {:data (sb2/parse-book (book :book))}})
 
+(defn get-book [id]
+  {:status 200
+   :body {:data (books/find-by-id id)}})
+
 (defn delete-book [_]
     {:status 200
      :body {:data "{}"}})
@@ -22,6 +26,7 @@
 (defroutes app-routes
   (context "/books" []
     (GET "/" [] get-books)
+    (GET "/:id" [id] (get-book id))
     (POST "/" [] create-book)
     (DELETE "/:id" [] delete-book))
   (route/not-found {:body {:error "Not such route"}}))

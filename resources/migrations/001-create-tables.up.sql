@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION update_updated_at_column()
 ' LANGUAGE 'plpgsql';
 
 CREATE TABLE books (
-  id          serial PRIMARY KEY,
+  id          varchar(256) PRIMARY KEY,
   title       varchar(80) NOT NULL CHECK (title <> ''),
   cover       varchar(80),
   author      varchar(80),

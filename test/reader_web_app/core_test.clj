@@ -8,6 +8,10 @@
     (let [response (app (mock/request :get "/books"))]
       (is (= (:status response) 200))))
 
+  (testing "book entity"
+    (let [response (app (mock/request :get "/books/1"))]
+      (is (= (:status response) 200))))
+
   (testing "create a book"
     (let [response (app (mock/request :post "/books"))]
       (is (= (:status response) 201))))
