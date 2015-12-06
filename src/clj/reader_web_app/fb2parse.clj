@@ -1,9 +1,12 @@
 (ns reader-web-app.fb2parse
-  (:require [clojure.xml :as xml])
+  (:require [clojure.xml :as xml]
+            [reader-web-app.fsw :as fsw]
+            [clojure.zip :as zip])
   (:import [javax.xml.bind.DatatypeConverter])
-  (:import [java.io.FileOutputStream])
-  (:gen-class))
+  (:import [java.io.FileOutputStream]))
 
+
+(def list-of-meta [:first-name :last-name :book-title :genre])
 ; (defn is-en?
 ;   [data]
 ;     (loop [maps data]
@@ -20,7 +23,6 @@
 
 (defn get-meta-info
   [raw-meta-info, k]
-  (println "\n" raw-meta-info)
   (if (or (string? raw-meta-info) (nil? raw-meta-info))
     nil
     (if (map? raw-meta-info)
@@ -42,7 +44,6 @@
 
 (defn get-node
   [raw-book, k]
-  (println k)
   (loop [nodes raw-book]
     (if (empty? nodes)
       nil
@@ -51,35 +52,25 @@
           cnode
           (recur nodess))))))
 
-(defn get-in-node
-  [nodes, ks]
-  )
-
-(defn save-cover
-  [raw-binary-jpg, cover-path]
-  (if (nil? raw-binary-jpg)
-    nil
-    (let [binary-jpg (first (clojure.xml/content raw-binary-jpg))
-        full-cover (str cover-path (.toString (char-array 29)) ".jpeg")
-         fos (java.io.FileOutputStream. full-cover)]
-      (try
-       (.write fos (javax.xml.bind.DatatypeConverter/parseBase64Binary binary-jpg))
-       (catch clojure.lang.ExceptionInfo e (println (str "SaveFileError: " e)))
-       (finally (.close fos)))))
-  )
-
 (defn parse-book
-  [book-path]
-  (let [raw-book (xml/parse book-path)
+  [book]
+  (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
+        ; raw-xml-book (slurp book)
+        raw-xml-book-wos (clojure.string/replace book #"(\t|\n|\r)" "")
         raw-book-content (xml/content raw-book)
         raw-meta-info (get-node raw-book-content :description)
-        raw-body (get-node raw-book-content :body)
-        raw-binary-jpg (get-node raw-book-content :binary)]
-    (println raw-binary-jpg)
+        ; raw-body (get-node raw-book-content :body)
+        raw-body (re-find #"(?i)<body>.*</body>" raw-xml-book-wos)
+        raw-binary-jpg (get-node raw-book-content :binary)
+        f-meta (flatten (map #(get-meta-info raw-meta-info %) list-of-meta))
+        cover (fsw/save-to-file raw-binary-jpg "image")
+        body (fsw/save-to-file raw-body "body")] ;
     ; (flatten (map #(get-meta-info raw-meta-info %) [:first-name :last-name :book-title :genre]))
-    ; (println (first raw-book))
+    ; (println raw-meta-info)
     ; (String. (javax.xml.bind.DatatypeConverter/parseBase64Binary (first (clojure.xml/content raw-binary-jpg))))
-    (save-cover raw-binary-jpg "resources/public/book-covers/")))
+    ; (fsw/save-cover raw-binary-jpg "resources/public/book-covers/")
+    ; (fsw/save-body raw-body "resources/private/book-bodies/")
+    {:meta f-meta :cover cover :body body}))
 
 (defn -main
   [some]

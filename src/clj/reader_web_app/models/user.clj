@@ -1,7 +1,8 @@
 (ns reader-web-app.models.user
   (:use korma.core)
   (:require [reader-web-app.entities :as e]
-            [reader-web-app.utils.uuid :as utils]))
+            [reader-web-app.utils.uuid :as utils]
+            [reader-web-app.fb2parse :as fb2]))
 
 (defn find-all []
   (select e/users))
