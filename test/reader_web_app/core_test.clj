@@ -10,13 +10,12 @@
 
   (testing "book entity"
     (let [response (app (mock/request :get "/books/1"))]
-      (is (= (:status response) 200)))))
+      (is (= (:status response) 200))))
 
-  ;(testing "create a book"
-  ;  (let [book (slurp "book.fb2")
-  ;        response (app (mock/request :post "/books" {"file" book}))]
-  ;    (is (= (:status response) 201))
-  ;    (is (= (:title response) "The Adventures of Tom Sawyer")))))
+  (testing "create a book"
+    (let [book (slurp "book.fb2")
+          response (app (mock/request :post "/books" {"book" book}))]
+      (is (= (:status response) 201)))))
 
 (deftest users-test
   (testing "list users"
